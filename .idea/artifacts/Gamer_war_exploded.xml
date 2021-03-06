@@ -11,7 +11,7 @@
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="Bookshelf" />
+          <element id="module-output" name="Gamer" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: org.glassfish.jersey.core:jersey-server:2.32" />
@@ -31,7 +31,7 @@
       <element id="directory" name="META-INF">
         <element id="file-copy" path="$PROJECT_DIR$/target/Gamer-0.1/META-INF/MANIFEST.MF" />
       </element>
-      <element id="javaee-facet-resources" facet="Bookshelf/web/Web" />
+      <element id="javaee-facet-resources" facet="Gamer/web/Web" />
     </root>
   </artifact>
 </component>
