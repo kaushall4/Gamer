@@ -1,26 +1,19 @@
-package ch.bzz.bookshelf.service;
+package ch.bzz.gamerList.service;
 
 
-
-//import ch.bzz.bookshelf.data.DataHandler;
-import ch.bzz.bookshelf.model.Book;
-import ch.bzz.bookshelf.model.Publisher;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.xml.crypto.Data;
-import java.util.List;
-import java.util.Map;
 
 /**
  * short description
  * <p>
- * Bookshelf
+ * Gamerlist
  *
- * @author TODO
+ * @author Kaushall Vimalarajah
  */
 @Path("test")
 public class TestService {
