@@ -87,12 +87,21 @@ public class Gamer {
         this.spiel = spiel;
     }
 
-
+    /**
+     * Gets the GamerUUID
+     *
+     * @return value of gamerUUID
+     */
 
     public String getGamerUUID() {
         return gamerUUID;
     }
 
+    /**
+     * Sets the gamerUUID
+     *
+     * @param gamerUUID =  the value to set
+     */
     public void setGamerUUID(String gamerUUID) {
         this.gamerUUID = gamerUUID;
     }
