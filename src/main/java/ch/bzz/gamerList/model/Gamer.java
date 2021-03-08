@@ -4,35 +4,39 @@ import ch.bzz.gamerList.data.DataHandler;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class Gamer {
+    private String gamerUUID;
     private String vorname;
+    private String nachname;
+    private int alter;
+    private Spiel[] spiel;
+
 
     public Gamer() {
-        setGamerUUID(null);
-        setVorname(null);
-        setNachname(null);
-        setSpiel(null);
-        setAlter(null);
     }
-
+//todo
     /**
      * gets the uuid of the spiel from the spielList
      * @return the spielUUID
      */
+    /*
     @JsonIgnore
     public String getPublisherUUID() {
         Spiel spiel = DataHandler.findSpielByGamer(getGamerUUID());
         return spiel.getSpielUUID();
     }
+    */
+
     /**
      * gets the spiel name from the spielList
      * @return the spielname
      */
 
+    /*
     @JsonIgnore
     public String getSpielName() {
         Spiel spiel = DataHandler.findSpielByGamer(getGamerUUID());
         return spiel.getSpiel();
-    }
+    }*/
     /**
      * Gets the vorname
      *
@@ -93,7 +97,7 @@ public class Gamer {
      *
      * @return value of spiel
      */
-    public Spiel getSpiel() {
+    public Spiel[] getSpiel() {
         return spiel;
     }
     /**
@@ -102,14 +106,11 @@ public class Gamer {
      * @param spiel =  the value to set
      */
 
-    public void setSpiel(Spiel spiel) {
+    public void setSpiel(Spiel[] spiel) {
         this.spiel = spiel;
     }
 
-    private String nachname;
-    private int alter;
-    private Spiel spiel;
-    private String gamerUUID;
+
 
     public String getGamerUUID() {
         return gamerUUID;

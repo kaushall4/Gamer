@@ -35,7 +35,7 @@ public class GamerService {
 
     public Response listGamer(
     ) {
-        List<Gamer> gamerList = DataHandler.getGamerList();
+        Map<String,Gamer> gamerList = DataHandler.getGamerList();
         Response response = Response
                 .status(200)
                 .entity(gamerList)
@@ -62,7 +62,8 @@ public class GamerService {
 
         try {
             UUID gamerKey = UUID.fromString(gamerUUID);
-            gamer = DataHandler.findGamerByUUID(gamerUUID);
+            //todo
+            //gamer = DataHandler.(gamerUUID);
             if (gamer != null) {
                 httpStatus = 200;
             } else {
