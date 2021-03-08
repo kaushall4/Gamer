@@ -13,30 +13,7 @@ public class Gamer {
 
     public Gamer() {
     }
-//todo
-    /**
-     * gets the uuid of the spiel from the spielList
-     * @return the spielUUID
-     */
-    /*
-    @JsonIgnore
-    public String getPublisherUUID() {
-        Spiel spiel = DataHandler.findSpielByGamer(getGamerUUID());
-        return spiel.getSpielUUID();
-    }
-    */
 
-    /**
-     * gets the spiel name from the spielList
-     * @return the spielname
-     */
-
-    /*
-    @JsonIgnore
-    public String getSpielName() {
-        Spiel spiel = DataHandler.findSpielByGamer(getGamerUUID());
-        return spiel.getSpiel();
-    }*/
     /**
      * Gets the vorname
      *

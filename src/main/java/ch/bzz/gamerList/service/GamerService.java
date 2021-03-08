@@ -3,11 +3,13 @@ package ch.bzz.gamerList.service;
 import ch.bzz.gamerList.data.DataHandler;
 import ch.bzz.gamerList.model.Gamer;
 import ch.bzz.gamerList.model.Spiel;
+import ch.bzz.gamerList.model.User;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Application;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
@@ -22,7 +24,7 @@ import java.util.UUID;
          * @author Kaushall Vimalarajah
         */
 @Path("gamer")
-public class GamerService {
+public class GamerService extends Application {
 
     /**
      * produces a list of all gamers
@@ -33,8 +35,7 @@ public class GamerService {
     @Path("list")
     @Produces(MediaType.APPLICATION_JSON)
 
-    public Response listGamer(
-    ) {
+    public Response listGamer() {
         Map<String,Gamer> gamerList = DataHandler.getGamerList();
         Response response = Response
                 .status(200)
@@ -47,29 +48,22 @@ public class GamerService {
     /**
      * reads a single Gamer identified by the gamerID
      *
-     * @param gamerUUID the gamerUUID in the URL
+     * @param uuid the gamerUUID in the URL
      * @return Response
      */
-    @GET
     @Path("read")
+    @GET
     @Produces(MediaType.APPLICATION_JSON)
-
-    public Response readGamer(
-            @QueryParam("uuid") String gamerUUID
-    ) {
+    public Response readGame(@QueryParam("uuid") String uuid) {
+        int httpStatus = 200;
         Gamer gamer = null;
-        int httpStatus;
-
         try {
-            UUID gamerKey = UUID.fromString(gamerUUID);
-            //todo
-            //gamer = DataHandler.(gamerUUID);
-            if (gamer != null) {
-                httpStatus = 200;
-            } else {
+            UUID.fromString(uuid);
+            gamer = new User().getGamer(uuid);
+            if (gamer == null) {
                 httpStatus = 404;
             }
-        } catch (IllegalArgumentException argEx) {
+        }catch (IllegalArgumentException ie) {
             httpStatus = 400;
         }
 

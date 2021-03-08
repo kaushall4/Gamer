@@ -12,6 +12,12 @@ import java.util.List;
 
 public class Spiel {
     private String spiel;
+    private String konsole;
+    private String genre;
+    private int altersgrenze;
+    private List<Gamer> gamerList;
+    private String spielUUID;
+
 
     /**
      * Gets the titel
@@ -91,11 +97,7 @@ public class Spiel {
     }
 
 
-    private String konsole;
-    private String genre;
-    private int altersgrenze;
-    private List<Gamer> gamerList;
-    private String spielUUID;
+
 
 
     /**

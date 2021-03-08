@@ -24,66 +24,58 @@ import java.util.Map;
 public class DataHandler {
     private static final DataHandler instance = new DataHandler();
     private static Map<String,Gamer> gamerList;
+    private static Map<String, Spiel>spielMap;
 
     /**
      * default constructor: defeat instantiation
      */
     private DataHandler() {
         gamerList = new HashMap<>();
+        spielMap = new HashMap<>();
         readJSON();
     }
 
-    /**
-     * gets a list of all spiele with their gamer
-     *
-     * @return
 
-    public static List<Spiel> getSpielList() {
-        if (gamerList == null) {
-            spielList = new ArrayList<>();
-            readJSON();
-        }
-        return spielList;
-    }
-*/
     public static Map<String,Gamer> getGamerList() {
         return gamerList;
     }
 
-    /**
-     * find the spiel for a gamer
-     *
-     * @param gamerUUID
-     * @return
-
-    public static Spiel findSpielByGamer(String gamerUUID) {
-        for (Spiel spiel : getSpielList()) {
-            for (Gamer gamer : spiel.getGamerList()) {
-                if (gamer.getGamerUUID().equals(gamerUUID))
-                    return spiel;
-            }
-        }
-        return null;
+    public static Map<String, Spiel>getSpielMap(){
+        return spielMap;
     }
-*/
+
+
+
     /**
      * gets a Gamer by its uuid
      *
-     * @param uuid the uuid of the Gamer
+     * @param gamerUUID the uuid of the Gamer
      * @return gamer-object
+     */
 
-    public static Gamer findGamerByUUID(String uuid) {
-        List<Gamer> gamerList = getGamerList();
-        for (Gamer gamer : gamerList) {
-            if (gamer != null && gamer.getGamerUUID().equals(uuid))
-                return gamer;
+    public static Gamer readGamer(String gamerUUID) {
+        Gamer gamer = null;
+        if (getGamerList().containsKey(gamerUUID)) {
+            gamer = getGamerList().get(gamerUUID);
         }
+        return gamer;
+    }
 
-        return null;
-    }*/
 
     /**
-     * reads the json-file into the spielList
+     * reads a single spiel identified by its uuid
+     * @param spielUUID  the identifiers
+     * @return publisher-object
+     */
+    public static Spiel readSpiel(String spielUUID) {
+        Spiel spiel = new Spiel();
+        if (getGamerList().containsKey(spielUUID)) {
+            spiel = getSpielMap().get(spielUUID);
+        }
+        return spiel;
+    }
+    /**
+     * reads the json-file into the gamerList
      */
     private static void readJSON() {
         try {
