@@ -1,0 +1,47 @@
+	
+	[
+  {
+  "gamerUUID": "ecd86148-5341-43c6-81ed-f3f4595965dc",
+    "vorname": "Kaushall",
+    "nachname": "Vimalarajah",
+	"alter": 16,
+	
+    "spiel": [
+      {
+	  "spielUUID": "3247c340-c712-402e-b400-0a23a9368c97",
+        "spiel": "Black Ops Cold War",
+        "genre": "shooter",
+        "altersgrenze": 18
+       
+      },
+      {
+	   "spielUUID": "db117daa-e295-4597-abcd-a69496797dc0",
+        "spiel": "Fifa",
+        "genre": "Sport",
+        "altersgrenze": 3
+      }
+    ]
+},
+ {
+  "gamerUUID": "0766ddb2-1a88-4c67-b961-0a95133b3df0",
+    "vorname": "tenzin",
+    "nachname": "bob",
+	"alter": 29,
+	
+    "spiel": [
+      {
+	  "spielUUID": "3247c340-c712-402e-b400-0a23a9368c97",
+        "spiel": "Black Ops Cold War",
+        "genre": "shooter",
+        "altersgrenze": 18
+       
+      },
+      {
+	   "spielUUID": "db117daa-e295-4597-abcd-a69496797dc0",
+        "spiel": "Fifa",
+        "genre": "Sport",
+        "altersgrenze": 3
+      }
+    ]
+}
+]
