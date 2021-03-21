@@ -14,7 +14,7 @@ public class User {
     }
 
     public Map<String, Gamer> getBookMap() {
-        return DataHandler.getGamerList();
+        return DataHandler.getGamerMap();
     }
 
     public Gamer getGamer(String uuid) {

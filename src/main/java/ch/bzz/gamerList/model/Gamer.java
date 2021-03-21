@@ -1,14 +1,11 @@
 package ch.bzz.gamerList.model;
 
-import ch.bzz.gamerList.data.DataHandler;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 public class Gamer {
     private String gamerUUID;
     private String vorname;
     private String nachname;
     private int alter;
-    private Spiel[] spiel;
+    private Spiel spiel;
 
 
     public Gamer() {
@@ -74,7 +71,7 @@ public class Gamer {
      *
      * @return value of spiel
      */
-    public Spiel[] getSpiel() {
+    public Spiel getSpiel() {
         return spiel;
     }
     /**
@@ -83,7 +80,7 @@ public class Gamer {
      * @param spiel =  the value to set
      */
 
-    public void setSpiel(Spiel[] spiel) {
+    public void setSpiel(Spiel spiel) {
         this.spiel = spiel;
     }
 

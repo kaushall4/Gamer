@@ -3,16 +3,17 @@ package ch.bzz.gamerList.data;
 import ch.bzz.gamerList.model.Gamer;
 import ch.bzz.gamerList.model.Spiel;
 import ch.bzz.gamerList.service.Config;
+import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * data handler for reading and writing the csv files
@@ -23,23 +24,32 @@ import java.util.Map;
 
 public class DataHandler {
     private static final DataHandler instance = new DataHandler();
-    private static Map<String,Gamer> gamerList;
+    private static Map<String,Gamer> gamerMap;
     private static Map<String, Spiel>spielMap;
 
     /**
      * default constructor: defeat instantiation
      */
     private DataHandler() {
-        gamerList = new HashMap<>();
+        gamerMap = new HashMap<>();
         spielMap = new HashMap<>();
         readJSON();
     }
 
-
-    public static Map<String,Gamer> getGamerList() {
-        return gamerList;
+    /**
+     * gets the bookMap
+     *
+     * @return the bookMap
+     */
+    public static Map<String,Gamer> getGamerMap() {
+        return gamerMap;
     }
 
+    /**
+     * gets the publisherMap
+     *
+     * @return the publisherMap
+     */
     public static Map<String, Spiel>getSpielMap(){
         return spielMap;
     }
@@ -55,12 +65,45 @@ public class DataHandler {
 
     public static Gamer readGamer(String gamerUUID) {
         Gamer gamer = null;
-        if (getGamerList().containsKey(gamerUUID)) {
-            gamer = getGamerList().get(gamerUUID);
+        if (getGamerMap().containsKey(gamerUUID)) {
+            gamer = getGamerMap().get(gamerUUID);
         }
         return gamer;
     }
 
+
+
+    /**
+     * inserts a new book into the bookmap
+     *
+     * @param gamer the gamer to be saved
+     */
+    public static void insertGamer(Gamer gamer) {
+        getGamerMap().put(gamer.getGamerUUID(), gamer);
+        writeJSON();
+    }
+
+    /**
+     * updates the bookmap
+     */
+    public static void updateGamer() {
+        writeJSON();
+    }
+
+
+    /**
+     * removes a book from the bookmap
+     *
+     * @param gamerUUID the uuid of the book to be removed
+     * @return success
+     */
+    public static boolean deleteGamer(String gamerUUID) {
+        if (getGamerMap().remove(gamerUUID) != null) {
+            writeJSON();
+            return true;
+        } else
+            return false;
+    }
 
     /**
      * reads a single spiel identified by its uuid
@@ -69,11 +112,65 @@ public class DataHandler {
      */
     public static Spiel readSpiel(String spielUUID) {
         Spiel spiel = new Spiel();
-        if (getGamerList().containsKey(spielUUID)) {
+        if (getGamerMap().containsKey(spielUUID)) {
             spiel = getSpielMap().get(spielUUID);
         }
         return spiel;
     }
+
+    /**
+     * inserts a new publisher in an empty book
+     * @param spiel
+     */
+    public static void insertSpiel(Spiel spiel) {
+        Gamer gamer = new Gamer();
+        gamer.setGamerUUID(UUID.randomUUID().toString());
+        gamer.setVorname("");
+        gamer.setNachname("");
+        gamer.setSpiel(spiel);
+        insertGamer(gamer);
+    }
+
+
+
+    public static boolean updateSpiel(Spiel spiel) {
+        boolean found = false;
+        for (Map.Entry<String, Gamer> entry : getGamerMap().entrySet()) {
+            Gamer gamer = entry.getValue();
+            if (gamer.getSpiel().getSpielUUID().equals(spiel.getSpielUUID())) {
+                gamer.setSpiel(spiel);
+                found = true;
+            }
+        }
+        writeJSON();
+        return found;
+    }
+
+
+    /**
+     * deletes a publisher, if it has no books
+     * @param spielUUID
+     * @return errorcode  0=ok, -1=referential integrity, 1=not found
+     */
+    public static int deleteSpiel(String spielUUID) {
+        int errorcode = 1;
+        for (Map.Entry<String, Gamer> entry : getGamerMap().entrySet()) {
+            Gamer gamer = entry.getValue();
+            if (gamer.getSpiel().getSpielUUID().equals(spielUUID)) {
+                if (gamer.getNachname() == null || gamer.getNachname().equals("")) {
+                    deleteGamer(gamer.getGamerUUID());
+                    errorcode = 0;
+                } else {
+                    return -1;
+                }
+            }
+        }
+        writeJSON();
+        return errorcode;
+    }
+
+
+
     /**
      * reads the json-file into the gamerList
      */
@@ -83,10 +180,31 @@ public class DataHandler {
             ObjectMapper objectMapper = new ObjectMapper();
             Gamer[] gamers = objectMapper.readValue(jsonData, Gamer[].class);
             for (Gamer gamer : gamers) {
-                getGamerList().put(gamer.getGamerUUID(), gamer);
+                getGamerMap().put(gamer.getGamerUUID(), gamer);
             }
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+
+    /**
+     * write the books and publishers
+     */
+
+    private static void writeJSON() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectWriter objectWriter = objectMapper.writer(new DefaultPrettyPrinter());
+        FileOutputStream fileOutputStream = null;
+        Writer fileWriter;
+
+        String gamerPath = Config.getProperty("gamerJSON");
+        try {
+            fileOutputStream = new FileOutputStream(gamerPath);
+            fileWriter = new BufferedWriter(new OutputStreamWriter(fileOutputStream, StandardCharsets.UTF_8));
+            objectWriter.writeValue(fileWriter, getGamerMap().values());
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
     }
 }

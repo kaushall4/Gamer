@@ -2,7 +2,6 @@ package ch.bzz.gamerList.service;
 
 import ch.bzz.gamerList.data.DataHandler;
 import ch.bzz.gamerList.model.Gamer;
-import ch.bzz.gamerList.model.Spiel;
 import ch.bzz.gamerList.model.User;
 
 import javax.ws.rs.GET;
@@ -12,7 +11,6 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -36,7 +34,7 @@ public class GamerService extends Application {
     @Produces(MediaType.APPLICATION_JSON)
 
     public Response listGamer() {
-        Map<String,Gamer> gamerList = DataHandler.getGamerList();
+        Map<String,Gamer> gamerList = DataHandler.getGamerMap();
         Response response = Response
                 .status(200)
                 .entity(gamerList)
