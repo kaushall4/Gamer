@@ -1,5 +1,7 @@
 package ch.bzz.gamerList.model;
 
+import javax.validation.constraints.*;
+import javax.ws.rs.FormParam;
 import java.util.List;
 
 /**
@@ -11,12 +13,42 @@ import java.util.List;
  */
 
 public class Spiel {
-    private String spiel;
-    private String konsole;
-    private String genre;
-    private int altersgrenze;
-    private List<Gamer> gamerList;
+
+
+
+    @FormParam("spielUUID")
+    @Pattern(regexp = "[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-{3}[0-9a-fA-F]{12})")
     private String spielUUID;
+
+    @FormParam("titel")
+    private Spiel spiel;
+
+    @FormParam("konsole")
+    @NotEmpty
+    @Size(min=2, max=40)
+    private String konsole;
+
+    @FormParam("genre")
+    @NotEmpty
+    @Size(min=2, max=40)
+    private String genre;
+
+
+     @FormParam("altersgrenze")
+    @NotEmpty
+     @Min(value=3)
+     @Max(value=18)
+     private int altersgrenze;
+
+
+
+    private List<Gamer> gamerList;
+
+
+
+
+
+
 
 
     /**
@@ -24,7 +56,7 @@ public class Spiel {
      *
      * @return value of titel
      */
-    public String getSpiel() {
+    public Spiel getSpiel() {
         return spiel;
     }
 
@@ -33,7 +65,7 @@ public class Spiel {
      *
      * @param spiel the value to set
      */
-    public void setSpiel(String spiel) {
+    public void setSpiel(Spiel spiel) {
         this.spiel = spiel;
     }
 

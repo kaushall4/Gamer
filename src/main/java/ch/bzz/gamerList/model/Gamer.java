@@ -1,15 +1,33 @@
 package ch.bzz.gamerList.model;
 
+import javax.validation.constraints.*;
+import javax.ws.rs.FormParam;
+import java.math.BigDecimal;
+
 public class Gamer {
+   @Pattern(regexp = "[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-{3}[0-9a-fA-F]{12})")
+   @FormParam("gamerUUID")
     private String gamerUUID;
-    private String vorname;
+
+    @FormParam("nachname")
+    @NotEmpty
+    @Size(min=2, max=40)
     private String nachname;
+
+  @FormParam("vorname")
+    @NotEmpty
+    @Size(min=2, max=40)
+  private String vorname;
+
+
+
+    @FormParam("alter")
+  //  @NotEmpty
+    @Min(value=1)
+    @Max(value=120)
     private int alter;
+
     private Spiel spiel;
-
-
-    public Gamer() {
-    }
 
     /**
      * Gets the vorname

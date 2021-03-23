@@ -83,10 +83,19 @@ public class DataHandler {
         writeJSON();
     }
 
+    public static void insertGamer(Gamer gamer,String spielUUID) {
+        Spiel spiel = getSpielMap().get(spielUUID);
+        gamer.setSpiel(spiel);
+        getGamerMap().put(gamer.getGamerUUID(), gamer);
+        writeJSON();
+    }
     /**
      * updates the bookmap
      */
     public static void updateGamer() {
+        writeJSON();
+    }
+    public static void updateSpiel() {
         writeJSON();
     }
 
@@ -99,6 +108,21 @@ public class DataHandler {
      */
     public static boolean deleteGamer(String gamerUUID) {
         if (getGamerMap().remove(gamerUUID) != null) {
+            writeJSON();
+            return true;
+        } else
+            return false;
+
+    }
+
+    /**
+     * removes a book from the bookmap
+     *
+     * @param spielUUID the uuid of the book to be removed
+     * @return success
+     */
+    public static boolean deleteSpiel(String spielUUID) {
+        if (getSpielMap().remove(spielUUID) != null) {
             writeJSON();
             return true;
         } else
@@ -119,7 +143,7 @@ public class DataHandler {
     }
 
     /**
-     * inserts a new publisher in an empty book
+     * inserts a new spiel in an empty Gamer
      * @param spiel
      */
     public static void insertSpiel(Spiel spiel) {
@@ -129,6 +153,13 @@ public class DataHandler {
         gamer.setNachname("");
         gamer.setSpiel(spiel);
         insertGamer(gamer);
+    }
+
+    public static void insertSpiel(Spiel spiel,String gamerUUID) {
+        Gamer gamer = getGamerMap().get(gamerUUID);
+        spiel.setSpiel(spiel);
+        getSpielMap().put(spiel.getSpielUUID(), spiel);
+        writeJSON();
     }
 
 
@@ -148,10 +179,10 @@ public class DataHandler {
 
 
     /**
-     * deletes a publisher, if it has no books
+     * deletes a spiel, if it has no gamer
      * @param spielUUID
      * @return errorcode  0=ok, -1=referential integrity, 1=not found
-     */
+
     public static int deleteSpiel(String spielUUID) {
         int errorcode = 1;
         for (Map.Entry<String, Gamer> entry : getGamerMap().entrySet()) {
@@ -169,7 +200,7 @@ public class DataHandler {
         return errorcode;
     }
 
-
+ */
 
     /**
      * reads the json-file into the gamerList

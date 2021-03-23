@@ -16,8 +16,16 @@ public class User {
     public Map<String, Gamer> getBookMap() {
         return DataHandler.getGamerMap();
     }
+    public Map<String, Spiel> getSpielMap() {
+        return DataHandler.getSpielMap();
+    }
 
     public Gamer getGamer(String uuid) {
         return DataHandler.readGamer(uuid);
     }
+    public Spiel getSpiel(String uuid) {
+        return DataHandler.readSpiel(uuid);
+    }
+
+
 }
