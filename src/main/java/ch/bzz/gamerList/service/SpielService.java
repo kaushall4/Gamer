@@ -97,7 +97,7 @@ public class SpielService extends Application {
     public Response createGamer(
 
             @Valid @BeanParam Spiel spiel,
-         //   @Pattern(regexp = "[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-{3}[0-9a-fA-F]{12})")
+          @Pattern(regexp = "[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-{3}[0-9a-fA-F]{12})")
             @FormParam("gamerUUID") String gamerUUID
     ) {
         int httpStatus = 200;
