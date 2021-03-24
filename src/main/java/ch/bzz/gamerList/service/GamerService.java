@@ -114,9 +114,9 @@ public class GamerService extends Application {
     @Path("update")
     @Produces(MediaType.TEXT_PLAIN)
     public Response updateGamer(
-          //  @Pattern(regexp = "[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-{3}[0-9a-fA-F]{12})")
+            @Pattern(regexp = "[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-{3}[0-9a-fA-F]{12})")
             @FormParam("gamerUUID") String gamerUUID,
-         //   @Pattern(regexp = "[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-{3}[0-9a-fA-F]{12})")
+          //  @Pattern(regexp = "[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-{3}[0-9a-fA-F]{12})")
             @Valid @BeanParam Gamer gamer,
             @FormParam("spielUUID") String spielUUID
     ) {

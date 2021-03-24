@@ -1,5 +1,18 @@
 package ch.bzz.gamerList.service;
 
+
+import ch.bzz.gamerList.data.DataHandler;
+import ch.bzz.gamerList.model.Gamer;
+import ch.bzz.gamerList.model.User;
+
+import javax.validation.Valid;
+import javax.validation.constraints.Pattern;
+import javax.ws.rs.*;
+import javax.ws.rs.core.Application;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import java.util.Map;
+import java.util.UUID;
 import ch.bzz.gamerList.data.DataHandler;
 import ch.bzz.gamerList.model.Gamer;
 import ch.bzz.gamerList.model.Spiel;
@@ -14,7 +27,7 @@ import java.util.Map;
 import java.util.UUID;
 
 /**
-        * provides services for the gamer
+        * provides services for the Spiel
         * <p>
 
          *
