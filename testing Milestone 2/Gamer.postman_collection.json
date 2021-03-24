@@ -1,0 +1,2607 @@
+{
+	"info": {
+		"_postman_id": "f3894b7d-57a7-4746-b4e8-8082f3eddca7",
+		"name": "Gamer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "0.1 Testservice",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/Gamer-0.1/resource/test/test",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Gamer-0.1",
+						"resource",
+						"test",
+						"test"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1. Gamerliste",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"validate response\", function(){",
+							"    pm.response.to.be.json;",
+							"    pm.expect(pm.response.text()).to.include(\"title\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URI}}gamer/list",
+					"host": [
+						"{{URI}}gamer"
+					],
+					"path": [
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2. Read Gamer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"validate response\", function(){",
+							"    pm.response.to.be.json;",
+							"    const responseJson = pm.response.json();",
+							"    pm.expect(responseJson.spiel).to.eql(\"Black Ops Cold War\");",
+							"  ",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URI}}gamer/read?spiel=Black Ops Cold War",
+					"host": [
+						"{{URI}}gamer"
+					],
+					"path": [
+						"read"
+					],
+					"query": [
+						{
+							"key": "spiel",
+							"value": "Black Ops Cold War"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3. Read unknown Gamer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\",function(){",
+							"    pm.response.to.have.status(404)",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URI}}gamer/read?676c7e6c-8042-11eb-9439-0242ac130002",
+					"host": [
+						"{{URI}}gamer"
+					],
+					"path": [
+						"read"
+					],
+					"query": [
+						{
+							"key": "676c7e6c-8042-11eb-9439-0242ac130002",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4. Read Gamer with invalid uuid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\",function(){",
+							"    pm.response.to.have.status(400);",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URI}}gamer/read?uuid=ecd86148-xyz-43c6-81ed-f3f4595965dc",
+					"host": [
+						"{{URI}}gamer"
+					],
+					"path": [
+						"read"
+					],
+					"query": [
+						{
+							"key": "uuid",
+							"value": "ecd86148-xyz-43c6-81ed-f3f4595965dc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1.2 Spieleliste",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"validate response\", function(){",
+							"    pm.response.to.be.json;",
+							"    pm.expect(pm.response.text()).to.include(\"title\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URI}}gamer/list",
+					"host": [
+						"{{URI}}gamer"
+					],
+					"path": [
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2.2 Read Spiel",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"validate response\", function(){",
+							"    pm.response.to.be.json;",
+							"    const responseJson = pm.response.json();",
+							"    pm.expect(responseJson.spiel).to.eql(\"Black Ops Cold War\");",
+							"  ",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URI}}gamer/read?spiel=Black Ops Cold War",
+					"host": [
+						"{{URI}}gamer"
+					],
+					"path": [
+						"read"
+					],
+					"query": [
+						{
+							"key": "spiel",
+							"value": "Black Ops Cold War"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3.2 Read unknown Spiel",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\",function(){",
+							"    pm.response.to.have.status(404)",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URI}}gamer/read?676c7e6c-8042-11eb-9439-0242ac130002",
+					"host": [
+						"{{URI}}gamer"
+					],
+					"path": [
+						"read"
+					],
+					"query": [
+						{
+							"key": "676c7e6c-8042-11eb-9439-0242ac130002",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.2 Read Spiel with invalid uuid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\",function(){",
+							"    pm.response.to.have.status(400);",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URI}}gamer/read?uuid=ecd86148-xyz-43c6-81ed-f3f4595965dc",
+					"host": [
+						"{{URI}}gamer"
+					],
+					"path": [
+						"read"
+					],
+					"query": [
+						{
+							"key": "uuid",
+							"value": "ecd86148-xyz-43c6-81ed-f3f4595965dc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5. Insert Gamer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "vorname",
+							"value": "Kaushall",
+							"type": "text"
+						},
+						{
+							"key": "nachname",
+							"value": "Vimalarajah",
+							"type": "text"
+						},
+						{
+							"key": "alter",
+							"value": "17",
+							"type": "text"
+						},
+						{
+							"key": "spiel",
+							"value": "3247c340-c712-402e-b400-0a23a9368c97",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URI}}gamer/create",
+					"host": [
+						"{{URI}}gamer"
+					],
+					"path": [
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5.1.1 Insert Vorname zu kurz",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\",function(){",
+							"    pm.response.to.have.status(400)",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "vorname",
+							"value": "H",
+							"type": "text"
+						},
+						{
+							"key": "nachname",
+							"value": "Muster",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "alter",
+							"value": "19",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "spielUUID",
+							"value": "3247c340-c712-402e-b400-0a23a9368c97",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URI}}gamer/create",
+					"host": [
+						"{{URI}}gamer"
+					],
+					"path": [
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5.1.2 Insert Vorname zu lang",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\",function(){",
+							"    pm.response.to.have.status(400)",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "vorname",
+							"value": "testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest",
+							"type": "text"
+						},
+						{
+							"key": "nachname",
+							"value": "Muster",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "alter",
+							"value": "19",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "spielUUID",
+							"value": "3247c340-c712-402e-b400-0a23a9368c97",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URI}}gamer/create",
+					"host": [
+						"{{URI}}gamer"
+					],
+					"path": [
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5.1.3 Insert Nachname zu kurz",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\",function(){",
+							"    pm.response.to.have.status(400)",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nachname",
+							"value": "H",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URI}}gamer/create",
+					"host": [
+						"{{URI}}gamer"
+					],
+					"path": [
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5.1.4 Insert Nachname zu lang",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\",function(){",
+							"    pm.response.to.have.status(400)",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nachname",
+							"value": "testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest",
+							"type": "text"
+						},
+						{
+							"key": "nachname",
+							"value": "Muster",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "alter",
+							"value": "19",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "spielUUID",
+							"value": "3247c340-c712-402e-b400-0a23a9368c97",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URI}}gamer/create",
+					"host": [
+						"{{URI}}gamer"
+					],
+					"path": [
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5.1.5 Insert Alter zu jung",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\",function(){",
+							"    pm.response.to.have.status(400)",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nachname",
+							"value": "testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "nachname",
+							"value": "Muster",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "alter",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "spielUUID",
+							"value": "3247c340-c712-402e-b400-0a23a9368c97",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URI}}gamer/create",
+					"host": [
+						"{{URI}}gamer"
+					],
+					"path": [
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5.1.6 Insert Alter zu alt",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\",function(){",
+							"    pm.response.to.have.status(400)",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nachname",
+							"value": "testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "nachname",
+							"value": "Muster",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "alter",
+							"value": "130",
+							"type": "text"
+						},
+						{
+							"key": "spielUUID",
+							"value": "3247c340-c712-402e-b400-0a23a9368c97",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URI}}gamer/create",
+					"host": [
+						"{{URI}}gamer"
+					],
+					"path": [
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6. Update Gamer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "gamerUUID",
+							"value": "8b37e0c0-cf1e-47c7-9211-50160ffd97c9",
+							"type": "text"
+						},
+						{
+							"key": "vorname",
+							"value": "Tobias",
+							"type": "text"
+						},
+						{
+							"key": "nachname",
+							"value": "Meier",
+							"type": "text"
+						},
+						{
+							"key": "spielUUID",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "alter",
+							"value": "21",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URI}}gamer/update?gamerUUID=8b37e0c0-cf1e-47c7-9211-50160ffd97c9",
+					"host": [
+						"{{URI}}gamer"
+					],
+					"path": [
+						"update"
+					],
+					"query": [
+						{
+							"key": "gamerUUID",
+							"value": "8b37e0c0-cf1e-47c7-9211-50160ffd97c9"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6.1.1 Update Vorname zu kurz",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "gamerUUID",
+							"value": "ecd86148-5341-43c6-81ed-f3f4595965dc",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "vorname",
+							"value": "P",
+							"type": "text"
+						},
+						{
+							"key": "nachname",
+							"value": "Peter",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "spielUUID",
+							"value": "ecd86148-5341-43c6-81ed-f3f4595965dc",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "alter",
+							"value": "21",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URI}}gamer/update",
+					"host": [
+						"{{URI}}gamer"
+					],
+					"path": [
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6.1.2 Update Vorname lang",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "gamerUUID",
+							"value": "ecd86148-5341-43c6-81ed-f3f4595965dc",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "vorname",
+							"value": "HansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHans",
+							"type": "text"
+						},
+						{
+							"key": "nachname",
+							"value": "Peter",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "spielUUID",
+							"value": "ecd86148-5341-43c6-81ed-f3f4595965dc",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "alter",
+							"value": "21",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URI}}gamer/update",
+					"host": [
+						"{{URI}}gamer"
+					],
+					"path": [
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6.1.3 Update Nachname zu lang",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "gamerUUID",
+							"value": "ecd86148-5341-43c6-81ed-f3f4595965dc",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "vorname",
+							"value": "HansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHans",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "nachname",
+							"value": "PeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeterPeter",
+							"type": "text"
+						},
+						{
+							"key": "spielUUID",
+							"value": "ecd86148-5341-43c6-81ed-f3f4595965dc",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "alter",
+							"value": "21",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URI}}gamer/update",
+					"host": [
+						"{{URI}}gamer"
+					],
+					"path": [
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6.1.4 Update Nachname zu kurz",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "gamerUUID",
+							"value": "ecd86148-5341-43c6-81ed-f3f4595965dc",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "vorname",
+							"value": "HansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHans",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "nachname",
+							"value": "P",
+							"type": "text"
+						},
+						{
+							"key": "spielUUID",
+							"value": "ecd86148-5341-43c6-81ed-f3f4595965dc",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "alter",
+							"value": "21",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URI}}gamer/update",
+					"host": [
+						"{{URI}}gamer"
+					],
+					"path": [
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6.1.5 Update Alter zu jung",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "gamerUUID",
+							"value": "ecd86148-5341-43c6-81ed-f3f4595965dc",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "vorname",
+							"value": "HansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHans",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "nachname",
+							"value": "P",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "spielUUID",
+							"value": "ecd86148-5341-43c6-81ed-f3f4595965dc",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "alter",
+							"value": "0",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URI}}gamer/update",
+					"host": [
+						"{{URI}}gamer"
+					],
+					"path": [
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6.1.6 Update Alter zu alt",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "gamerUUID",
+							"value": "ecd86148-5341-43c6-81ed-f3f4595965dc",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "vorname",
+							"value": "HansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHansHans",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "nachname",
+							"value": "P",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "spielUUID",
+							"value": "ecd86148-5341-43c6-81ed-f3f4595965dc",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "alter",
+							"value": "150",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URI}}gamer/update",
+					"host": [
+						"{{URI}}gamer"
+					],
+					"path": [
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "7. update unknown Gamer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\",function(){",
+							"    pm.response.to.have.status(404)",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "gamerUUID",
+							"value": "00746a291-0ef9-4b2a-8268-392b12d636bd",
+							"type": "text"
+						},
+						{
+							"key": "vorname",
+							"value": "NewName",
+							"type": "text"
+						},
+						{
+							"key": "nachname",
+							"value": "NewVorname",
+							"type": "text"
+						},
+						{
+							"key": "spielUUID",
+							"value": "ecd86148-5341-43c6-81ed-f3f4595965dc",
+							"type": "text"
+						},
+						{
+							"key": "alter",
+							"value": "12",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URI}}gamer/update",
+					"host": [
+						"{{URI}}gamer"
+					],
+					"path": [
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "8. Update Gamer with invalid uuid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\",function(){",
+							"    pm.response.to.have.status(400)",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "gamerUUID",
+							"value": "XXX46a291-0ef9-4b2a-8268-392b12d636bd",
+							"type": "text"
+						},
+						{
+							"key": "vorname",
+							"value": "NewName",
+							"type": "text"
+						},
+						{
+							"key": "nachanme",
+							"value": "NewVorname",
+							"type": "text"
+						},
+						{
+							"key": "spielUUID",
+							"value": "ecd86148-5341-43c6-81ed-f3f4595965dc",
+							"type": "text"
+						},
+						{
+							"key": "alter",
+							"value": "14",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URI}}gamer/update",
+					"host": [
+						"{{URI}}gamer"
+					],
+					"path": [
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "9. Delete Gamer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{URI}}gamer/delete?uuid=8e956738-3b5b-4af1-9625-285b39f6028d",
+					"host": [
+						"{{URI}}gamer"
+					],
+					"path": [
+						"delete"
+					],
+					"query": [
+						{
+							"key": "uuid",
+							"value": "8e956738-3b5b-4af1-9625-285b39f6028d"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "10. Delete unknown gamer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{URI}}book/delete?uuid=3247c340-ffff-402e-b400-0a23a9368c97",
+					"host": [
+						"{{URI}}book"
+					],
+					"path": [
+						"delete"
+					],
+					"query": [
+						{
+							"key": "uuid",
+							"value": "3247c340-ffff-402e-b400-0a23a9368c97"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5.2 Insert Spiel",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "titel",
+							"value": "Black ops 2",
+							"type": "text"
+						},
+						{
+							"key": "konsole",
+							"value": "Playstation 5",
+							"type": "text"
+						},
+						{
+							"key": "genre",
+							"value": "shooter",
+							"type": "text"
+						},
+						{
+							"key": "altersgrenze",
+							"value": "18",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URI}}spiel/create",
+					"host": [
+						"{{URI}}spiel"
+					],
+					"path": [
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5.2.1 Insert titel zu kurz",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "titel",
+							"value": "Black ops 2",
+							"type": "text"
+						},
+						{
+							"key": "konsole",
+							"value": "Playstation 5",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "genre",
+							"value": "shooter",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "altersgrenze",
+							"value": "18",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URI}}spiel/create",
+					"host": [
+						"{{URI}}spiel"
+					],
+					"path": [
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5.2.2 Insert titel zu lang",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "titel",
+							"value": "Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2Black ops 2",
+							"type": "text"
+						},
+						{
+							"key": "konsole",
+							"value": "Playstation 5",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "genre",
+							"value": "shooter",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "altersgrenze",
+							"value": "18",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URI}}spiel/create",
+					"host": [
+						"{{URI}}spiel"
+					],
+					"path": [
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5.2.3 Insert konsole zu kurz",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "titel",
+							"value": "Black ops 2",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "konsole",
+							"value": "P",
+							"type": "text"
+						},
+						{
+							"key": "genre",
+							"value": "shooter",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "altersgrenze",
+							"value": "18",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URI}}spiel/create",
+					"host": [
+						"{{URI}}spiel"
+					],
+					"path": [
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5.2.4 Insert konsole zu lang",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "titel",
+							"value": "Black ops 2",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "konsole",
+							"value": "PlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionvv",
+							"type": "text"
+						},
+						{
+							"key": "genre",
+							"value": "shooter",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "altersgrenze",
+							"value": "18",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URI}}spiel/create",
+					"host": [
+						"{{URI}}spiel"
+					],
+					"path": [
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5.2.5 Insert genre zu lang",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "titel",
+							"value": "Black ops 2",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "konsole",
+							"value": "PlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionvv",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "genre",
+							"value": "shootershootershootershootershootershootershootershootershootershootershootershootershootershootershootershootershootershootershootershootershootershootershootershootershootershootershootershootershootershootershootershootershootershootershootershootershootershootershootershootershootershootershootershootershootershootershootershootershootershootershootershootershootershootershootershootershootershootershootershootershootershootershooter",
+							"type": "text"
+						},
+						{
+							"key": "altersgrenze",
+							"value": "18",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URI}}spiel/create",
+					"host": [
+						"{{URI}}spiel"
+					],
+					"path": [
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5.2.6 Insert genre zu kurz",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "titel",
+							"value": "Black ops 2",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "konsole",
+							"value": "PlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionvv",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "genre",
+							"value": "s",
+							"type": "text"
+						},
+						{
+							"key": "altersgrenze",
+							"value": "18",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URI}}spiel/create",
+					"host": [
+						"{{URI}}spiel"
+					],
+					"path": [
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5.2.7 Insert altersgrenze zu klein",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "titel",
+							"value": "Black ops 2",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "konsole",
+							"value": "PlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionvv",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "genre",
+							"value": "s",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "altersgrenze",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URI}}spiel/create",
+					"host": [
+						"{{URI}}spiel"
+					],
+					"path": [
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5.2.8 Insert altersgrenze zu gross",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "titel",
+							"value": "Black ops 2",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "konsole",
+							"value": "PlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionPlaysattionvv",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "genre",
+							"value": "s",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "altersgrenze",
+							"value": "200",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URI}}spiel/create",
+					"host": [
+						"{{URI}}spiel"
+					],
+					"path": [
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6.2 Update Spiel",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "titel",
+							"value": "Mincecraft",
+							"type": "text"
+						},
+						{
+							"key": "konsole",
+							"value": "PC",
+							"type": "text"
+						},
+						{
+							"key": "genre",
+							"value": "Sandbox",
+							"type": "text"
+						},
+						{
+							"key": "altersgrenze",
+							"value": "12",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URI}}spiel/update",
+					"host": [
+						"{{URI}}spiel"
+					],
+					"path": [
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6.2.1 Update titel zu kurz",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "titel",
+							"value": "M",
+							"type": "text"
+						},
+						{
+							"key": "konsole",
+							"value": "PC",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "genre",
+							"value": "Sandbox",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "altersgrenze",
+							"value": "12",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URI}}spiel/update",
+					"host": [
+						"{{URI}}spiel"
+					],
+					"path": [
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6.2.2 Update titel zu lang",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "titel",
+							"value": "MinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraftMinecraft",
+							"type": "text"
+						},
+						{
+							"key": "konsole",
+							"value": "PC",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "genre",
+							"value": "Sandbox",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "altersgrenze",
+							"value": "12",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URI}}spiel/update",
+					"host": [
+						"{{URI}}spiel"
+					],
+					"path": [
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6.2.3 Update konsole zu lang",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "titel",
+							"value": "M",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "konsole",
+							"value": "PCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPC",
+							"type": "text"
+						},
+						{
+							"key": "genre",
+							"value": "Sandbox",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "altersgrenze",
+							"value": "12",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URI}}spiel/update",
+					"host": [
+						"{{URI}}spiel"
+					],
+					"path": [
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6.2.4 Update konsole zu kurz",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "titel",
+							"value": "M",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "konsole",
+							"value": "P",
+							"type": "text"
+						},
+						{
+							"key": "genre",
+							"value": "Sandbox",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "altersgrenze",
+							"value": "12",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URI}}spiel/update",
+					"host": [
+						"{{URI}}spiel"
+					],
+					"path": [
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6.2.5 Update genre zu kurz",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "titel",
+							"value": "M",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "konsole",
+							"value": "P",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "genre",
+							"value": "S",
+							"type": "text"
+						},
+						{
+							"key": "altersgrenze",
+							"value": "12",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URI}}spiel/update",
+					"host": [
+						"{{URI}}spiel"
+					],
+					"path": [
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6.2.6 Update genre zu lang",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "titel",
+							"value": "M",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "konsole",
+							"value": "PCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPC",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "genre",
+							"value": "PCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPC",
+							"type": "text"
+						},
+						{
+							"key": "altersgrenze",
+							"value": "12",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URI}}spiel/update",
+					"host": [
+						"{{URI}}spiel"
+					],
+					"path": [
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6.2.7 Update Altersgrenze zu hoch",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "titel",
+							"value": "M",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "konsole",
+							"value": "PCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPC",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "genre",
+							"value": "PCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPC",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "altersgrenze",
+							"value": "120",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URI}}spiel/update",
+					"host": [
+						"{{URI}}spiel"
+					],
+					"path": [
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6.2.8 Update Altersgrenze zu niedrig",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "titel",
+							"value": "M",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "konsole",
+							"value": "PCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPC",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "genre",
+							"value": "PCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPCPC",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "altersgrenze",
+							"value": "0",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URI}}spiel/update",
+					"host": [
+						"{{URI}}spiel"
+					],
+					"path": [
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "7.2 Update unknown Spiel",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\",function(){",
+							"    pm.response.to.have.status(404)",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "titel",
+							"value": "Mincecraft",
+							"type": "text"
+						},
+						{
+							"key": "konsole",
+							"value": "PC",
+							"type": "text"
+						},
+						{
+							"key": "genre",
+							"value": "Sandbox",
+							"type": "text"
+						},
+						{
+							"key": "altersgrenze",
+							"value": "12",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URI}}spiel/update",
+					"host": [
+						"{{URI}}spiel"
+					],
+					"path": [
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "8.2 Update Spiel with invalid uuid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\",function(){",
+							"    pm.response.to.have.status(400)",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "gamerUUID",
+							"value": "XXX46a291-0ef9-4b2a-8268-392b12d636bd",
+							"type": "text"
+						},
+						{
+							"key": "vorname",
+							"value": "NewName",
+							"type": "text"
+						},
+						{
+							"key": "nachanme",
+							"value": "NewVorname",
+							"type": "text"
+						},
+						{
+							"key": "spielUUID",
+							"value": "ecd86148-5341-43c6-81ed-f3f4595965dc",
+							"type": "text"
+						},
+						{
+							"key": "alter",
+							"value": "14",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URI}}spiel/update",
+					"host": [
+						"{{URI}}spiel"
+					],
+					"path": [
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "9.2 Delete Spiel",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{URI}}spiel/delete?uuid=3247c340-c712-402e-b400-0a23a9368c97",
+					"host": [
+						"{{URI}}spiel"
+					],
+					"path": [
+						"delete"
+					],
+					"query": [
+						{
+							"key": "uuid",
+							"value": "3247c340-c712-402e-b400-0a23a9368c97"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "10.1 Delete unknown Spiel",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function(){",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{URI}}spiel/delete?uuid=3247c340-ffff-402e-b400-0a23a9368c97",
+					"host": [
+						"{{URI}}spiel"
+					],
+					"path": [
+						"delete"
+					],
+					"query": [
+						{
+							"key": "uuid",
+							"value": "3247c340-ffff-402e-b400-0a23a9368c97"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URI",
+			"value": ""
+		}
+	]
+}
