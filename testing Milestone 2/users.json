@@ -1,0 +1,25 @@
+[ {
+  "gamerUUID" : "b6053732-1750-49ef-9120-5ab9bf2ea197",
+  "nachname" : "Meier",
+  "vorname" : "Felix",
+  "alter" : 40,
+  "spiel" : null
+}, {
+  "gamerUUID" : "8e956738-3b5b-4af1-9625-285b39f6028d",
+  "nachname" : "Vimalarajah",
+  "vorname" : "Kaushall",
+  "alter" : 18,
+  "spiel" : null
+}, {
+  "gamerUUID" : "8562a704-bc28-4736-bd97-2e51adaabb52",
+  "nachname" : "Vimalarajah",
+  "vorname" : "Kaushall",
+  "alter" : 17,
+  "spiel" : null
+}, {
+  "gamerUUID" : "8b37e0c0-cf1e-47c7-9211-50160ffd97c9",
+  "nachname" : "Muster",
+  "vorname" : "Hans",
+  "alter" : 19,
+  "spiel" : null
+} ]
