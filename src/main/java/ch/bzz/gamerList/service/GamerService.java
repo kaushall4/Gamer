@@ -2,14 +2,18 @@ package ch.bzz.gamerList.service;
 
 import ch.bzz.gamerList.data.DataHandler;
 import ch.bzz.gamerList.model.Gamer;
+import ch.bzz.gamerList.model.Gamershelf;
+import ch.bzz.gamerList.model.Spiel;
 import ch.bzz.gamerList.model.User;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -32,7 +36,17 @@ public class GamerService extends Application {
     @Path("list")
     @Produces(MediaType.APPLICATION_JSON)
 
-    public Response listGamer() {
+    public Response listGamer(
+            @CookieParam("userRole") String userRole
+    ) {
+        List<Gamer> gamerMap = null;
+        int httpStatus;
+        if (userRole == null || userRole.equals("guest")){
+            httpStatus = 403;
+        }else {
+            httpStatus = 200;
+      gamerMap = new Spiel().getGamerList();
+        }
         Map<String,Gamer> gamerList = DataHandler.getGamerMap();
         Response response = Response
                 .status(200)
@@ -45,23 +59,25 @@ public class GamerService extends Application {
     /**
      * reads a single Gamer identified by the gamerID
      *
-     * @param uuid the gamerUUID in the URL
+     * @param gamerUUID the gamerUUID in the URL
      * @return Response
      */
     @Path("read")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response readGamer(@QueryParam("uuid") String uuid) {
-        int httpStatus = 200;
+    public Response readGamer(
+            @NotEmpty
+            @Pattern(regexp = "[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}")
+            @QueryParam("uuid") String gamerUUID
+    ) {
         Gamer gamer = null;
-        try {
-            UUID.fromString(uuid);
-            gamer = new User().getGamer(uuid);
-            if (gamer == null) {
-                httpStatus = 404;
-            }
-        }catch (IllegalArgumentException ie) {
-            httpStatus = 400;
+        int httpStatus;
+
+        gamer = DataHandler.readGamer(gamerUUID);
+        if (gamer.getNachname() != null) {
+            httpStatus = 200;
+        } else {
+            httpStatus = 404;
         }
 
         Response response = Response
@@ -105,7 +121,6 @@ public class GamerService extends Application {
 
     /**
      * updates an existing Gamer
-     * @param gamerUUID valid uuid identifying the gamer
      * @param gamer a valid gamer-Object
      * @param spielUUID the unique key of the spiel
      * @return Response
@@ -114,27 +129,29 @@ public class GamerService extends Application {
     @Path("update")
     @Produces(MediaType.TEXT_PLAIN)
     public Response updateGamer(
-            @Pattern(regexp = "[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-{3}[0-9a-fA-F]{12})")
-            @FormParam("gamerUUID") String gamerUUID,
-          //  @Pattern(regexp = "[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-{3}[0-9a-fA-F]{12})")
             @Valid @BeanParam Gamer gamer,
+            @NotEmpty
+            @Pattern(regexp = "[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}")
             @FormParam("spielUUID") String spielUUID
     ) {
         int httpStatus = 200;
 
-        try {
-            UUID.fromString(gamerUUID);
-            gamer = DataHandler.readGamer(gamerUUID);
-            if (gamer.getNachname() != null) {
-                httpStatus = 200;
 
-                DataHandler.updateGamer();
-            } else {
-                httpStatus = 404;
-            }
-        } catch (IllegalArgumentException argEx) {
-            httpStatus = 400;
+        Gamer oldGamer = DataHandler.readGamer(gamer.getGamerUUID());
+        if (oldGamer.getNachname() != null) {
+            httpStatus = 200;
+            oldGamer.setNachname(gamer.getNachname());
+            oldGamer.setVorname(gamer.getVorname());
+            oldGamer.setAlter(gamer.getAlter());
+            oldGamer.setSpiel(gamer.getSpiel());
+
+            Spiel spiel = DataHandler.readSpiel(spielUUID);
+            oldGamer.setSpiel(spiel);
+            DataHandler.updateGamer();
+        } else {
+            httpStatus = 404;
         }
+
 
         Response response = Response
                 .status(httpStatus)

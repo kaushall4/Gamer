@@ -121,13 +121,23 @@ public class DataHandler {
      * @param spielUUID the uuid of the book to be removed
      * @return success
      */
-    public static boolean deleteSpiel(String spielUUID) {
-        if (getSpielMap().remove(spielUUID) != null) {
-            writeJSON();
-            return true;
-        } else
-            return false;
+    public static int deleteSpiel(String spielUUID) {
+        int errorcode = 1;
+        for (Map.Entry<String, Gamer> entry : getGamerMap().entrySet()) {
+            Gamer gamer = entry.getValue();
+            if (gamer.getSpiel().getSpielUUID().equals(spielUUID)) {
+                if (gamer.getNachname() == null || gamer.getNachname().equals("")) {
+                    deleteGamer(gamer.getGamerUUID());
+                    errorcode = 0;
+                } else {
+                    return -1;
+                }
+            }
+        }
+        writeJSON();
+        return errorcode;
     }
+
 
     /**
      * reads a single spiel identified by its uuid
@@ -157,7 +167,7 @@ public class DataHandler {
 
     public static void insertSpiel(Spiel spiel,String gamerUUID) {
         Gamer gamer = getGamerMap().get(gamerUUID);
-        spiel.setSpiel(spiel);
+        gamer.setSpiel(spiel);
         getSpielMap().put(spiel.getSpielUUID(), spiel);
         writeJSON();
     }

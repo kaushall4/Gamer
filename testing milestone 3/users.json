@@ -1,0 +1,84 @@
+[ {
+  "gamerUUID" : "170fae71-d98d-4a70-b245-95b89ff378c5",
+  "nachname" : "Vimalarajah",
+  "vorname" : "Kaushall6000",
+  "alter" : 17,
+  "spiel" : null
+}, {
+  "gamerUUID" : "b6053732-1750-49ef-9120-5ab9bf2ea197",
+  "nachname" : "Meier",
+  "vorname" : "Felix",
+  "alter" : 40,
+  "spiel" : {
+    "spielUUID" : "606cc4a5-8bfd-4e24-85c1-ecf6b9814712",
+    "titel" : "Fifa",
+    "konsole" : "PS4",
+    "genre" : "Action",
+    "altersgrenze" : 18,
+    "gamerList" : null
+  }
+}, {
+  "gamerUUID" : "639d1b12-10eb-4464-8e2e-54a597acbf28",
+  "nachname" : "Vimalarajah",
+  "vorname" : "Kaushall700000000000000",
+  "alter" : 17,
+  "spiel" : null
+}, {
+  "gamerUUID" : "8562a704-bc28-4736-bd97-2e51adaabb52",
+  "nachname" : "Vimalarajah",
+  "vorname" : "Kaushall",
+  "alter" : 17,
+  "spiel" : {
+    "spielUUID" : "ecd86148-5341-43c6-81ed-f3f4595965dc",
+    "titel" : "Grand Thef Auto V",
+    "konsole" : "PS4",
+    "genre" : "Action",
+    "altersgrenze" : 18,
+    "gamerList" : null
+  }
+}, {
+  "gamerUUID" : "541a0656-e214-4ce3-ac81-9301a47779cd",
+  "nachname" : "Vimalarajah",
+  "vorname" : "Kaushall2",
+  "alter" : 17,
+  "spiel" : null
+}, {
+  "gamerUUID" : "753a3055-395e-4fc1-96ec-64a640745717",
+  "nachname" : "Test2",
+  "vorname" : "Test2",
+  "alter" : 19,
+  "spiel" : {
+    "spielUUID" : "aacaabc6-a797-11eb-bcbc-0242ac130002",
+    "titel" : "Call of Duty",
+    "konsole" : "PS4",
+    "genre" : "Action",
+    "altersgrenze" : 18,
+    "gamerList" : null
+  }
+}, {
+  "gamerUUID" : "7c27d5ad-3799-4771-9670-1d1936fa1b4f",
+  "nachname" : "Test2",
+  "vorname" : "Test2",
+  "alter" : 19,
+  "spiel" : {
+    "spielUUID" : "606cc4a5-8bfd-4e24-85c1-ecf6b9814712",
+    "titel" : "Fifa",
+    "konsole" : "PS4",
+    "genre" : "Action",
+    "altersgrenze" : 18,
+    "gamerList" : null
+  }
+}, {
+  "gamerUUID" : "8b37e0c0-cf1e-47c7-9211-50160ffd97c9",
+  "nachname" : "Muster",
+  "vorname" : "Hans",
+  "alter" : 19,
+  "spiel" : {
+    "spielUUID" : "606cc4a5-8bfd-4e24-85c1-ecf6b9814712",
+    "titel" : "Fifa",
+    "konsole" : "PS4",
+    "genre" : "Action",
+    "altersgrenze" : 18,
+    "gamerList" : null
+  }
+} ]

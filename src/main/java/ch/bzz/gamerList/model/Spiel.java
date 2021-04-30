@@ -20,8 +20,11 @@ public class Spiel {
     @Pattern(regexp = "[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-{3}[0-9a-fA-F]{12})")
     private String spielUUID;
 
+
+
     @FormParam("titel")
-    private Spiel spiel;
+    @NotEmpty
+    private String titel;
 
     @FormParam("konsole")
     @NotEmpty
@@ -56,17 +59,17 @@ public class Spiel {
      *
      * @return value of titel
      */
-    public Spiel getSpiel() {
-        return spiel;
+    public String getTitel() {
+        return titel;
     }
 
     /**
      * Sets the titel
      *
-     * @param spiel the value to set
+     * @param titel the value to set
      */
-    public void setSpiel(Spiel spiel) {
-        this.spiel = spiel;
+    public void setTitel(String titel) {
+        this.titel = titel;
     }
 
     /**

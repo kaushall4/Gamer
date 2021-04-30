@@ -2,10 +2,9 @@ package ch.bzz.gamerList.service;
 
 
 import ch.bzz.gamerList.data.DataHandler;
-import ch.bzz.gamerList.model.Gamer;
-import ch.bzz.gamerList.model.User;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Application;
@@ -13,18 +12,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.Map;
 import java.util.UUID;
-import ch.bzz.gamerList.data.DataHandler;
-import ch.bzz.gamerList.model.Gamer;
-import ch.bzz.gamerList.model.Spiel;
-import ch.bzz.gamerList.model.User;
 
-import javax.validation.Valid;
-import javax.ws.rs.*;
-import javax.ws.rs.core.Application;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import java.util.Map;
-import java.util.UUID;
+import ch.bzz.gamerList.model.Spiel;
 
 /**
         * provides services for the Spiel
@@ -58,24 +47,28 @@ public class SpielService extends Application {
     /**
      * reads a single spiel identified by the spielID
      *
-     * @param uuid the spielUUID in the URL
+     * @param spielUUID the spielUUID in the URL
      * @return Response
      */
     @Path("read")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response readSpiel(@QueryParam("uuid") String uuid) {
-        int httpStatus = 200;
+    public Response readSpiel(
+
+            @NotEmpty
+            @Pattern(regexp = "[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}")
+            @QueryParam("uuid") String spielUUID
+    ) {
         Spiel spiel = null;
-        try {
-            UUID.fromString(uuid);
-            spiel = new User().getSpiel(uuid);
-            if (spiel == null) {
-                httpStatus = 404;
-            }
-        }catch (IllegalArgumentException ie) {
-            httpStatus = 400;
+        int httpStatus;
+
+        spiel = DataHandler.readSpiel(spielUUID);
+        if (spiel.getTitel() != null) {
+            httpStatus = 200;
+        } else {
+            httpStatus = 404;
         }
+
 
         Response response = Response
                 .status(httpStatus)
@@ -87,26 +80,19 @@ public class SpielService extends Application {
     /**
      * creates a new spiel
      * @param spiel a valid Spiel-Object
-     * @param gamerUUID the unique key of the gamer
 
      * @return Response
      */
     @POST
     @Path("create")
     @Produces(MediaType.TEXT_PLAIN)
-    public Response createGamer(
+    public Response createSpiel(
 
-            @Valid @BeanParam Spiel spiel,
-          @Pattern(regexp = "[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-{3}[0-9a-fA-F]{12})")
-            @FormParam("gamerUUID") String gamerUUID
+            @Valid @BeanParam Spiel spiel
     ) {
         int httpStatus = 200;
-
         spiel.setSpielUUID(UUID.randomUUID().toString());
-
-
-        DataHandler.insertSpiel(spiel,gamerUUID);
-
+        DataHandler.insertSpiel(spiel);
 
         Response response = Response
                 .status(httpStatus)
@@ -118,35 +104,21 @@ public class SpielService extends Application {
 
     /**
      * updates an existing Gamer
-     * @param spielUUID valid uuid identifying the spiel
      * @param spiel a valid spiel-Object
-     * @param gamerUUID the unique key of the gamer
      * @return Response
      */
     @PUT
     @Path("update")
     @Produces(MediaType.TEXT_PLAIN)
     public Response updateSpiel(
-          //  @Pattern(regexp = "[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-{3}[0-9a-fA-F]{12})")
-          @FormParam("spielUUID") String spielUUID,
-         //   @Pattern(regexp = "[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-{3}[0-9a-fA-F]{12})")
-            @Valid @BeanParam Spiel spiel,
-          @FormParam("gamerUUID") String gamerUUID
+            @Valid @BeanParam Spiel spiel
     ) {
         int httpStatus = 200;
 
-        try {
-            UUID.fromString(spielUUID);
-            spiel = DataHandler.readSpiel(spielUUID);
-            if (spiel.getSpiel() != null) {
-                httpStatus = 200;
-
-                DataHandler.updateSpiel();
-            } else {
-                httpStatus = 404;
-            }
-        } catch (IllegalArgumentException argEx) {
-            httpStatus = 400;
+        if (DataHandler.updateSpiel(spiel)) {
+            httpStatus = 200;
+        } else {
+            httpStatus = 404;
         }
 
         Response response = Response
@@ -165,23 +137,16 @@ public class SpielService extends Application {
     @Path("delete")
     @Produces(MediaType.TEXT_PLAIN)
     public Response deleteSpiel(
-         //   @Pattern(regexp = "[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-{3}[0-9a-fA-F]{12})")
+            @NotEmpty
+            @Pattern(regexp = "[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}")
             @QueryParam("uuid") String spielUUID
-
     ) {
         int httpStatus;
-        try {
-            UUID.fromString(spielUUID);
 
-            if (DataHandler.deleteSpiel(spielUUID)) {
-                httpStatus = 200;
-
-            } else {
-                httpStatus = 404;
-            }
-        } catch (IllegalArgumentException argEx) {
-            httpStatus = 400;
-        }
+        int errorcode = DataHandler.deleteSpiel(spielUUID);
+        if (errorcode == 0) httpStatus = 200;
+        else if (errorcode == -1) httpStatus = 409;
+        else httpStatus = 404;
 
         Response response = Response
                 .status(httpStatus)
