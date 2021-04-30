@@ -1,0 +1,525 @@
+{
+	"info": {
+		"_postman_id": "c95eb1b2-a0db-4417-8793-e92770e90a8b",
+		"name": "Milestone 3",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "LU7.1 Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "ammanna",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "geheim",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URI}}resource/user/login",
+					"host": [
+						"{{URI}}resource"
+					],
+					"path": [
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LU7.2 Login failed",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "ammannaasdfsfs",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "geheim",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URI}}resource/user/login",
+					"host": [
+						"{{URI}}resource"
+					],
+					"path": [
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LU7.3 Logoff",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "{{URI}}resource/user/logout",
+					"host": [
+						"{{URI}}resource"
+					],
+					"path": [
+						"user",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LU6.1 load Gamer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "{{URI}}gameredit.html?uuid=8562a704-bc28-4736-bd97-2e51adaabb52",
+					"host": [
+						"{{URI}}gameredit",
+						"html"
+					],
+					"query": [
+						{
+							"key": "uuid",
+							"value": "8562a704-bc28-4736-bd97-2e51adaabb52"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LU6.2 show Gamer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "{{URI}}gameredit.html?uuid=8562a704-bc28-4736-bd97-2e51adaabb52",
+					"host": [
+						"{{URI}}gameredit",
+						"html"
+					],
+					"query": [
+						{
+							"key": "uuid",
+							"value": "8562a704-bc28-4736-bd97-2e51adaabb52"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LU6.3 save Gamer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "vorname",
+							"value": "TestTestTest",
+							"type": "text"
+						},
+						{
+							"key": "nachname",
+							"value": "tEsttEsttEst",
+							"type": "text"
+						},
+						{
+							"key": "alter",
+							"value": "77",
+							"type": "text"
+						},
+						{
+							"key": "spiel",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URI}}gameredit.html?uuid=8562a704-bc28-4736-bd97-2e51adaabb52",
+					"host": [
+						"{{URI}}gameredit",
+						"html"
+					],
+					"query": [
+						{
+							"key": "uuid",
+							"value": "8562a704-bc28-4736-bd97-2e51adaabb52"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LU6.4 create Gamer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "vorname",
+							"value": "TestTestTest",
+							"type": "text"
+						},
+						{
+							"key": "nachname",
+							"value": "tEsttEsttEst",
+							"type": "text"
+						},
+						{
+							"key": "alter",
+							"value": "77",
+							"type": "text"
+						},
+						{
+							"key": "spiel",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URI}}gameredit.html",
+					"host": [
+						"{{URI}}gameredit",
+						"html"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LU6.5 list Gamer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URI}}gamershelf.html",
+					"host": [
+						"{{URI}}gamershelf",
+						"html"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LU8.1 Cookie ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "aammanna",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "geheim",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URI}}resource/user/login",
+					"host": [
+						"{{URI}}resource"
+					],
+					"path": [
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LU8.1 Cookie List",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "aammanna",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "geheim",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URI}}resource/gamer/list",
+					"host": [
+						"{{URI}}resource"
+					],
+					"path": [
+						"gamer",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LU8.1 Cookie Logout",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "{{URI}}resource/user/logout",
+					"host": [
+						"{{URI}}resource"
+					],
+					"path": [
+						"user",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URI",
+			"value": ""
+		}
+	]
+}

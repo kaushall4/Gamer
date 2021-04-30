@@ -1,0 +1,359 @@
+{
+	"id": "1611ae23-1635-433f-90e6-bde910acbda3",
+	"name": "Milestone 3",
+	"timestamp": "2021-04-30T15:51:55.396Z",
+	"collection_id": "c95eb1b2-a0db-4417-8793-e92770e90a8b",
+	"folder_id": 0,
+	"environment_id": "0",
+	"totalPass": 9,
+	"totalFail": 2,
+	"results": [
+		{
+			"id": "f5c4a6a5-47be-4b13-bc40-b16b2391464b",
+			"name": "LU7.1 Login",
+			"url": "http://localhost:8080/Gamer-0.1/resource/user/login",
+			"time": 477,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				477
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "3bcb571a-4f1b-450a-b482-6406977bf739",
+			"name": "LU7.2 Login failed",
+			"url": "http://localhost:8080/Gamer-0.1/resource/user/login",
+			"time": 15,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				15
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "baae81a3-ff59-47ba-9e8b-2db629cde14e",
+			"name": "LU7.3 Logoff",
+			"url": "http://localhost:8080/Gamer-0.1/resource/user/logout",
+			"time": 47,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				47
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "9395a788-f939-48ef-8567-d5afef57e681",
+			"name": "LU6.1 load Gamer",
+			"url": "http://localhost:8080/Gamer-0.1/gameredit.html?uuid=8562a704-bc28-4736-bd97-2e51adaabb52",
+			"time": 44,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				44
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "e5cbead9-9a2d-425d-b4e2-76ec330b0dad",
+			"name": "LU6.2 show Gamer",
+			"url": "http://localhost:8080/Gamer-0.1/gameredit.html?uuid=8562a704-bc28-4736-bd97-2e51adaabb52",
+			"time": 5,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				5
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "2609283f-677b-4546-8079-3c7ba59e2a94",
+			"name": "LU6.3 save Gamer",
+			"url": "http://localhost:8080/Gamer-0.1/gameredit.html?uuid=8562a704-bc28-4736-bd97-2e51adaabb52",
+			"time": 4,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				4
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "df6b7397-79b9-45db-8e9c-a4e1681c85e2",
+			"name": "LU6.4 create Gamer",
+			"url": "http://localhost:8080/Gamer-0.1/gameredit.html",
+			"time": 7,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				7
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "689607b0-2a34-433d-a389-c3ce1e2b5148",
+			"name": "LU6.5 list Gamer",
+			"url": "http://localhost:8080/Gamer-0.1/gamershelf.html",
+			"time": 16,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				16
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "01ae5f2c-f41f-4b64-83e7-f18b55317d91",
+			"name": "LU8.1 Cookie ",
+			"url": "http://localhost:8080/Gamer-0.1/resource/user/login",
+			"time": 22,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Status test": false
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				22
+			],
+			"allTests": [
+				{
+					"Status test": false
+				}
+			]
+		},
+		{
+			"id": "9954813c-f3bf-4c4c-bb02-888fd20efb8b",
+			"name": "LU8.1 Cookie List",
+			"url": "http://localhost:8080/Gamer-0.1/resource/gamer/list",
+			"time": 4,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": false
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				4
+			],
+			"allTests": [
+				{
+					"Status test": false
+				}
+			]
+		},
+		{
+			"id": "3673e0b4-cef3-4f49-a505-c025a8120c3e",
+			"name": "LU8.1 Cookie Logout",
+			"url": "http://localhost:8080/Gamer-0.1/resource/user/logout",
+			"time": 11,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				11
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 652,
+	"collection": {
+		"requests": [
+			{
+				"id": "f5c4a6a5-47be-4b13-bc40-b16b2391464b",
+				"method": "POST"
+			},
+			{
+				"id": "3bcb571a-4f1b-450a-b482-6406977bf739",
+				"method": "POST"
+			},
+			{
+				"id": "baae81a3-ff59-47ba-9e8b-2db629cde14e",
+				"method": "DELETE"
+			},
+			{
+				"id": "9395a788-f939-48ef-8567-d5afef57e681",
+				"method": "GET"
+			},
+			{
+				"id": "e5cbead9-9a2d-425d-b4e2-76ec330b0dad",
+				"method": "GET"
+			},
+			{
+				"id": "2609283f-677b-4546-8079-3c7ba59e2a94",
+				"method": "POST"
+			},
+			{
+				"id": "df6b7397-79b9-45db-8e9c-a4e1681c85e2",
+				"method": "POST"
+			},
+			{
+				"id": "689607b0-2a34-433d-a389-c3ce1e2b5148",
+				"method": "GET"
+			},
+			{
+				"id": "01ae5f2c-f41f-4b64-83e7-f18b55317d91",
+				"method": "POST"
+			},
+			{
+				"id": "9954813c-f3bf-4c4c-bb02-888fd20efb8b",
+				"method": "GET"
+			},
+			{
+				"id": "3673e0b4-cef3-4f49-a505-c025a8120c3e",
+				"method": "DELETE"
+			}
+		]
+	}
+}
